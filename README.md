@@ -3,6 +3,8 @@
 `demo.sh` is a very simple script that permits scripting of demos in a bash.
 Commands are replyed as you type random characters.
 
+Setting the `DEMO_DEBUG` env. variable will enable some debug outupt
+
 ## Features
 
 - configurable speed of typing

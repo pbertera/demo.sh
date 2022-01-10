@@ -19,6 +19,7 @@ ps1() {
 p(){
     local speed=${SPEED-1}
     local cmd="$@"
+	[[ -n $DEMO_DEBUG ]] && echo "DEBUG: SPEED=$speed - COMMAND: '$cmd'"
     ps1
     local i=0
     [[ -n $COLOR ]] || COLOR="reset"
@@ -37,7 +38,8 @@ p(){
 # print and execute
 pe(){
     p "$@"
-    eval $@
+	[[ -n $DEMO_DEBUG ]] && echo "DEBUG: eval COMMAND: '$@'"
+    eval "$@"
 }
 
 # print and execute immediately
