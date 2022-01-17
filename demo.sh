@@ -54,6 +54,15 @@ pi(){
     SPEED=${#cmd} p $@
 }
 
+# execute a command until 'c' is not entered
+loop(){
+	cmd="$@"
+	while [ "$key" != 'c' ]; do
+    	$cmd 
+    	read -n 1 -rep $'Press "c" to continue with the demo: \n' key
+	done
+}
+
 pause(){
     read -s
 }

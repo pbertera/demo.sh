@@ -49,6 +49,9 @@ for i in $(seq 0 3); do
     pe "echo I am in a loop: $i"
 done
 
+p '# the following will loop executing the "ip addr" command until you press "c"'
+loop pe ip addr
+
 COLOR=ORANGE pi "Goodbye !"
 sleep 3
 clear
