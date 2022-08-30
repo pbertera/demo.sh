@@ -18,13 +18,18 @@ ps1() {
 # print a command
 p(){
     local speed=${SPEED-1}
+    local auto=${AUTO-no}
     local cmd="$@"
 	[[ -n $DEMO_DEBUG ]] && echo "DEBUG: SPEED=$speed - COMMAND: '$cmd'"
     ps1
     local i=0
     [[ -n $COLOR ]] || COLOR="reset"
-    while [ $i -lt ${#cmd} ]; do  
-        read -s -n 1
+    while [ $i -lt ${#cmd} ]; do
+	if [ "$auto" != "yes" ]; then
+	  read -s -n 1
+	else
+	  sleep 0.1
+	fi
         echo -ne ${c[$COLOR]}
         echo -n "${cmd:$i:$speed}"
         echo -ne ${c["reset"]}
