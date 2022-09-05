@@ -17,7 +17,7 @@ Commands are replyed as you type random characters.
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/UwAbsPHCwbgfGflieV2vJQk5l.svg)](https://asciinema.org/a/UwAbsPHCwbgfGflieV2vJQk5l)
+[![asciicast](https://asciinema.org/a/8MLff6zn1BkimNkKOfJIXX1CT.svg)](https://asciinema.org/a/8MLff6zn1BkimNkKOfJIXX1CT)
 
 The script used for the demo:
 
