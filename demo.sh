@@ -17,26 +17,27 @@ ps1() {
 
 # print a command
 p(){
-    local speed=${SPEED-1}
-    local auto=${AUTO-no}
+    local csize=${DEMO_CSIZE-1}
+    local auto_type=${DEMO_AUTO_TYPE-no}
+    local speed=${DEMO_SPEED-0.1}
     local cmd="$@"
-	[[ -n $DEMO_DEBUG ]] && echo "DEBUG: SPEED=$speed - COMMAND: '$cmd'"
+	[[ -n $DEMO_DEBUG ]] && echo "DEBUG: DEMO_CSIZE=$csize - COMMAND: '$cmd' - DEMO_AUTO_TYPE='$auto_type'"
     ps1
     local i=0
-    [[ -n $COLOR ]] || COLOR="reset"
+    [[ -n $DEMO_COLOR ]] || DEMO_COLOR="reset"
     while [ $i -lt ${#cmd} ]; do
-	if [ "$auto" != "yes" ]; then
+	if [ "$auto_type" != "yes" ]; then
 	  read -s -n 1
 	else
-	  sleep 0.1
+	  sleep $speed
 	fi
-        echo -ne ${c[$COLOR]}
-        echo -n "${cmd:$i:$speed}"
+        echo -ne ${c[$DEMO_COLOR]}
+        echo -n "${cmd:$i:$csize}"
         echo -ne ${c["reset"]}
-        i=$(($i + $speed))
+        i=$(($i + $csize))
     done
-    # if NOWAIT is set do not wait for the ENTER
-    [[ -n $NOWAIT ]] || read -s
+    # if DEMO_NOWAIT is set do not wait for the ENTER
+    [[ "$DEMO_NOWAIT" == "yes" ]] || read -s
     echo
 }
 
@@ -50,13 +51,13 @@ pe(){
 # print and execute immediately
 pei(){
     cmd="$@"
-    SPEED=${#cmd} pe $@
+    DEMO_CSIZE=${#cmd} pe $@
 }
 
 # print immediately
 pi(){
     cmd="$@"
-    SPEED=${#cmd} p $@
+    DEMO_CSIZE=${#cmd} p $@
 }
 
 # execute a command until 'c' is not entered
